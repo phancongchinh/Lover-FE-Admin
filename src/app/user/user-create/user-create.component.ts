@@ -8,6 +8,8 @@ import {User} from '../../model/user';
 import {UserService} from '../../service/user/user.service';
 import {Router} from '@angular/router';
 
+declare var $: any;
+
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
@@ -19,6 +21,8 @@ export class UserCreateComponent implements OnInit {
 
   nationalities: Nationality[] = [];
 
+  years: number[] = [];
+
   constructor(private userService: UserService,
               private cityService: CityService,
               private nationalityService: NationalityService,
@@ -29,23 +33,81 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {
     this.getAllCities();
     this.getAllNationalities();
+    for (let i = 1950; i < new Date().getFullYear() - 18; i++) {
+      this.years.push(i);
+    }
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (() => {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      const forms = document.querySelectorAll('.needs-validation');
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-        .forEach((form) => {
-          form.addEventListener('submit', (event) => {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-    })();
+    $(() => {
+      $('.select2').select2();
+
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      });
+
+      $.validator.setDefaults({
+        submitHandler: () => {
+          alert('Form successful submitted!');
+        }
+      });
+
+      $('#userCreateForm').validate({
+        rules: {
+          firstName: {
+            required: true,
+          },
+          lastName: {
+            required: true,
+          },
+          gender: {
+            required: true,
+          },
+          yearOfBirth: {
+            required: true,
+          },
+          email: {
+            required: true,
+            email: true,
+          },
+          phone: {
+            required: true,
+            minlength: 10,
+            maxLength: 10,
+          },
+          username: {
+            required: true,
+            minlength: 8,
+            maxLength: 14
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+          roles: {
+            required: true,
+          },
+          city: {
+            required: true,
+          },
+          nationality: {
+            required: true,
+          },
+          terms: {
+            required: true
+          },
+        },
+        errorElement: 'span',
+        errorPlacement: (error, element) => {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: (element, errorClass, validClass) => {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: (element, errorClass, validClass) => {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
   }
 
   private getAllCities() {

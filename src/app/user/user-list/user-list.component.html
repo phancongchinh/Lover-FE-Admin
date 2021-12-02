@@ -25,7 +25,7 @@
 <section class="content">
   <div class="card">
     <div class="card-header">
-      <span class="btn btn-success btn-sm" routerLink="/users/create">
+      <span class="btn btn-success btn-sm" routerLink="create">
         <i class="fas fa-star"></i> Add new
       </span>
 
@@ -62,19 +62,19 @@
             <td>{{idx + 1}}</td>
             <td>
               <span>
-              <a routerLink="/users/view/{{user.id}}">{{user.firstName}} {{user.lastName}}</a>
+              <a routerLink="admin/users/view/{{user.id}}">{{user.firstName}} {{user.lastName}}</a>
               </span>
             </td>
             <td>{{user.phone}}</td>
             <td>{{user.email}}</td>
             <td class="project-actions text-right">
-              <a type="button" class="btn btn-info btn-sm" routerLink="/users/edit/{{user.id}}">
+              <a type="button" class="btn btn-info btn-sm" routerLink="admin/users/edit/{{user.id}}">
                 <i class="fas fa-pencil-alt">
                 </i>
                 Edit
               </a> &nbsp;
               <a type="button" id="btn-delete-user" (click)="getCurrentUserId(user.id)"
-                 routerLink="/users/edit/{{user.id}}"
+                 routerLink="admin/users/edit/{{user.id}}"
                  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete">
                 <i class="fas fa-trash">
                 </i>

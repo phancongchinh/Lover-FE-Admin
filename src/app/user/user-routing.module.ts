@@ -20,7 +20,7 @@ const routes: Routes = [
     component: UserEditComponent
   },
   {
-    path: 'view',
+    path: 'view/:id',
     component: UserViewComponent
   }
 ];
