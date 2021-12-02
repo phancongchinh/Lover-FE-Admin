@@ -1,0 +1,4 @@
+.red-star:after {
+  content:" *";
+  color: red;
+}

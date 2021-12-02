@@ -1,68 +1,186 @@
-<div class="row-cols-md-10">
-  <form #userCreateForm="ngForm" class="row g-3 needs-validation" novalidate>
-    <div class="col-md-4">
-      <label for="firstName" class="form-label">First name</label>
-      <input ngModel type="text" class="form-control" id="firstName" name="firstName" required>
-      <div class="invalid-feedback">
-        Please enter your first name correctly!
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="lastName" class="form-label">Last name</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" required>
-      <div class="invalid-feedback">
-        Please enter your last name correctly!
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="username" class="form-label">Username</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="inputGroupPrepend">@</span>
-        <input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend" required>
-        <div class="invalid-feedback">
-          Please choose a username!
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label for="validationCustom03" class="form-label">City</label>
-      <input type="text" class="form-control" id="validationCustom03" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="validationCustom04" class="form-label">State</label>
-      <select class="form-select" id="validationCustom04" required>
-        <option selected disabled value="">Choose...</option>
-        <option>...</option>
-      </select>
-      <div class="invalid-feedback">
-        Please select a valid state.
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="validationCustom05" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="validationCustom05" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-        <label class="form-check-label" for="invalidCheck">
-          Agree to terms and conditions!
-        </label>
-        <div class="invalid-feedback">
-          You must agree before submitting.
-        </div>
-      </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-  </form>
-</div>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add new user</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form #userCreateForm="ngForm" id="userCreateForm">
+            <div class="card-body">
+
+              <label for="required" class="red-star">Required information...</label>
+              <div id="required">
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="firstName" class="red-star">First name</label>
+                    <input ngModel type="text" name="firstName" class="form-control"
+                           id="firstName" placeholder="First name">
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="lastName" class="red-star">Last name</label>
+                    <input ngModel type="text" name="lastName" class="form-control"
+                           id="lastName" placeholder="Last name">
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="gender" class="red-star">Gender</label>
+                    <select name="gender" id="gender" class="form-control">
+                      <option value="" selected disabled>-- Select gender --</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="yearOfBirth" class="red-star">Year of birth</label>
+                    <select name="yearOfBirth" id="yearOfBirth" class="form-control">
+                      <option value="" selected disabled>-- Select year of birth --</option>
+                      <option *ngFor="let year of years" value="year">{{year}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="email" class="red-star">Email address</label>
+                    <input ngModel type="email" name="email" class="form-control"
+                           id="email" placeholder="Enter email">
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="phone" class="red-star">Phone</label>
+                    <input ngModel type="number" name="phone" class="form-control"
+                           id="phone" placeholder="Enter phone">
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="username" class="red-star">Username</label>
+                    <input ngModel type="text" name="username" class="form-control"
+                           id="username" placeholder="Enter username">
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="password" class="red-star">Password</label>
+                    <input ngModel type="password" name="password" class="form-control" id="password"
+                           placeholder="Password">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="roles" class="red-star">Roles</label>
+                    <div class="select2-purple">
+                      <select ngModel class="select2" multiple="multiple" id="roles"
+                              data-placeholder="--Select roles--" required
+                              data-dropdown-css-class="select2-purple" style="width: 100%;">
+                        <option value="" selected disabled>-- Select roles --</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_ADMIN">Seller</option>
+                        <option value="ROLE_ADMIN">Buyer</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="city" class="red-star">City</label>
+                    <select ngModel name="city" id="city" class="form-control">
+                      <option value="" selected disabled>-- Select city --</option>
+                      <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="nationality" class="red-star">Nationality</label>
+                    <select ngModel name="nationality" id="nationality" class="form-control">
+                      <option value="" selected disabled>-- Select nationality --</option>
+                      <option *ngFor="let nationality of nationalities"
+                              value="{{nationality.id}}">{{nationality.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
 
+              <label for="additional">Additional information...</label>
+              <div id="additional">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="facebookUrl">Facebook URL</label>
+                    <input ngModel type="text" name="facebookUrl" class="form-control" id="facebookUrl"
+                           placeholder="Facebook URL">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="weight">Weight</label>
+                    <input ngModel type="text" name="weight" class="form-control" id="weight"
+                           placeholder="Weight">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="height">Height</label>
+                    <input ngModel type="text" name="height" class="form-control" id="height"
+                           placeholder="Height">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="bust">Bust</label>
+                    <input ngModel type="text" name="bust" class="form-control" id="bust"
+                           placeholder="Bust">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="waist">Waist</label>
+                    <input ngModel type="text" name="waist" class="form-control" id="waist"
+                           placeholder="Waist">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="hips">Hips</label>
+                    <input ngModel type="text" name="hips" class="form-control" id="hips"
+                           placeholder="Hips">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <label for="description">Description</label>
+                    <textarea ngModel name="description" id="description" rows="3" class="form-control"
+                              placeholder="Tell something about yourself">
+                  </textarea>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                  <label class="custom-control-label"
+                         for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6">
+
+      </div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
