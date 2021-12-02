@@ -34,13 +34,6 @@ export class LoginComponent implements OnInit {
       this.userToken = data;
       localStorage.setItem('userToken', JSON.stringify(this.userToken));
       const roles = this.userToken.roles;
-      for (let i = 0; i < roles.length; i++) {
-        if (roles.name === 'ROLE_ADMIN') {
-          this.router.navigate(['admin']);
-          return;
-        }
-      }
-      this.router.navigate(['/buyer']);
     }, error => console.log(error.message));
   }
 
