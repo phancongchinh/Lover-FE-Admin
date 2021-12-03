@@ -11,7 +11,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form #userCreateForm="ngForm" id="userCreateForm">
+          <form #userCreateForm="ngForm" id="userCreateForm" (ngSubmit)="submitUserCreateForm(userCreateForm)">
             <div class="card-body">
 
               <label for="required" class="red-star">Required information...</label>
@@ -31,7 +31,7 @@
 
                   <div class="form-group col-md-3">
                     <label for="gender" class="red-star">Gender</label>
-                    <select name="gender" id="gender" class="form-control">
+                    <select ngModel name="gender" id="gender" class="form-control">
                       <option value="" selected disabled>-- Select gender --</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -40,7 +40,7 @@
 
                   <div class="form-group col-md-3">
                     <label for="yearOfBirth" class="red-star">Year of birth</label>
-                    <select name="yearOfBirth" id="yearOfBirth" class="form-control">
+                    <select ngModel="" name="yearOfBirth" id="yearOfBirth" class="form-control">
                       <option value="" selected disabled>-- Select year of birth --</option>
                       <option *ngFor="let year of years" value="year">{{year}}</option>
                     </select>
@@ -56,7 +56,7 @@
 
                   <div class="form-group col-md-3">
                     <label for="phone" class="red-star">Phone</label>
-                    <input ngModel type="number" name="phone" class="form-control"
+                    <input ngModel type="text" name="phone" class="form-control"
                            id="phone" placeholder="Enter phone">
                   </div>
 
@@ -77,13 +77,12 @@
                   <div class="form-group col-md-3">
                     <label for="roles" class="red-star">Roles</label>
                     <div class="select2-purple">
-                      <select ngModel class="select2" multiple="multiple" id="roles"
+                      <select class="select2" multiple="multiple" id="roles" name="roles"
                               data-placeholder="--Select roles--" required
                               data-dropdown-css-class="select2-purple" style="width: 100%;">
-                        <option value="" selected disabled>-- Select roles --</option>
                         <option value="ROLE_ADMIN">Admin</option>
-                        <option value="ROLE_ADMIN">Seller</option>
-                        <option value="ROLE_ADMIN">Buyer</option>
+                        <option value="ROLE_SELLER">Seller</option>
+                        <option value="ROLE_BUYER">Buyer</option>
                       </select>
                     </div>
                   </div>
@@ -107,7 +106,6 @@
                 </div>
               </div>
 
-
               <label for="additional">Additional information...</label>
               <div id="additional">
                 <div class="row">
@@ -118,12 +116,12 @@
                   </div>
                   <div class="form-group col-md-3">
                     <label for="weight">Weight</label>
-                    <input ngModel type="text" name="weight" class="form-control" id="weight"
+                    <input ngModel type="number" name="weight" class="form-control" id="weight"
                            placeholder="Weight">
                   </div>
                   <div class="form-group col-md-3">
                     <label for="height">Height</label>
-                    <input ngModel type="text" name="height" class="form-control" id="height"
+                    <input ngModel type="number" name="height" class="form-control" id="height"
                            placeholder="Height">
                   </div>
                 </div>
@@ -131,17 +129,17 @@
                 <div class="row">
                   <div class="form-group col-md-3">
                     <label for="bust">Bust</label>
-                    <input ngModel type="text" name="bust" class="form-control" id="bust"
+                    <input ngModel type="number" name="bust" class="form-control" id="bust"
                            placeholder="Bust">
                   </div>
                   <div class="form-group col-md-3">
                     <label for="waist">Waist</label>
-                    <input ngModel type="text" name="waist" class="form-control" id="waist"
+                    <input ngModel type="number" name="waist" class="form-control" id="waist"
                            placeholder="Waist">
                   </div>
                   <div class="form-group col-md-3">
                     <label for="hips">Hips</label>
-                    <input ngModel type="text" name="hips" class="form-control" id="hips"
+                    <input ngModel type="number" name="hips" class="form-control" id="hips"
                            placeholder="Hips">
                   </div>
                 </div>
@@ -154,14 +152,6 @@
                   </textarea>
                   </div>
 
-                </div>
-              </div>
-
-              <div class="form-group mb-0">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                  <label class="custom-control-label"
-                         for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
                 </div>
               </div>
             </div>

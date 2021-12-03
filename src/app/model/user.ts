@@ -23,6 +23,7 @@ export interface User {
   roles?: any;
   viewCounter?: number;
   rentedCounter?: number;
-  status?: any;
+  status?: string;
   images?: any;
+  services?: any;
 }

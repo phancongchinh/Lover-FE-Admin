@@ -7,6 +7,8 @@ import {NotificationService} from '../../service/notification/notification.servi
 import {User} from '../../model/user';
 import {UserService} from '../../service/user/user.service';
 import {Router} from '@angular/router';
+import {Service} from '../../model/service';
+import {ServiceService} from '../../service/service/service.service';
 
 declare var $: any;
 
@@ -23,7 +25,15 @@ export class UserCreateComponent implements OnInit {
 
   years: number[] = [];
 
+  // tslint:disable-next-line:ban-types
+  selectedRoles: String[] = [];
+
+  allServices: Service[] = [];
+
+  services: Service[] = [];
+
   constructor(private userService: UserService,
+              private serviceService: ServiceService,
               private cityService: CityService,
               private nationalityService: NationalityService,
               private notificationService: NotificationService,
@@ -33,6 +43,7 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {
     this.getAllCities();
     this.getAllNationalities();
+    this.getAllServices();
     for (let i = 1950; i < new Date().getFullYear() - 18; i++) {
       this.years.push(i);
     }
@@ -71,12 +82,10 @@ export class UserCreateComponent implements OnInit {
           phone: {
             required: true,
             minlength: 10,
-            maxLength: 10,
           },
           username: {
             required: true,
-            minlength: 8,
-            maxLength: 14
+            minlength: 8
           },
           password: {
             required: true,
@@ -95,6 +104,7 @@ export class UserCreateComponent implements OnInit {
             required: true
           },
         },
+        // messages: {},
         errorElement: 'span',
         errorPlacement: (error, element) => {
           error.addClass('invalid-feedback');
@@ -126,8 +136,27 @@ export class UserCreateComponent implements OnInit {
     });
   }
 
-  addNew(user: User) {
-    this.userService.addNew(user).subscribe((data) => {
+  private getAllServices() {
+    this.serviceService.findAll().subscribe((data) => {
+      this.allServices = data;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  submitUserCreateForm(userCreateForm: any) {
+    const newUser: User = userCreateForm.value;
+    newUser.city = {
+      id: newUser.city,
+    };
+    newUser.nationality = {
+      id: newUser.nationality,
+    };
+
+    newUser.roles = $('#roles').val();
+    newUser.services = $('#services').val();
+
+    this.userService.addNew(newUser).subscribe((data) => {
       this.notificationService.notify('success', 'User created successfully!');
       this.router.navigateByUrl('admin/users').then();
     }, (error) => {

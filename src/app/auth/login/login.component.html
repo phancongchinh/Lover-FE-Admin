@@ -595,7 +595,7 @@
                       <input placeholder="Password" class="woocommerce-Input w-100 woocommerce-Input--text input-text" type="password" formControlName="password">
                     </p>
                     <div
-                      *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
+                      *ngIf="!password?.valid && (password?.dirty || password?.touched)">
                       <div [hidden]="!password.errors.required" style="color: red">
                         First Name is required
                       </div>

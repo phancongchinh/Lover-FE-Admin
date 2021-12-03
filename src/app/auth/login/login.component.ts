@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserToken} from '../../model/user-token';
+import {JwtResponse} from '../../model/jwt-response';
 import {User} from '../../model/user';
 import {Router} from '@angular/router';
+import {ROLE_ADMIN} from '../../model/constants';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  userToken: UserToken = {};
+  userToken: JwtResponse = {};
 
   user: User;
 
@@ -30,18 +31,19 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.user = this.userForm.value;
-    this.authenticationService.login(this.userForm.get('username').value, this.userForm.get('password').value).subscribe(data => {
-      this.userToken = data;
-      localStorage.setItem('userToken', JSON.stringify(this.userToken));
-      const roles = this.userToken.roles;
-      for (let i = 0; i < roles.length; i++) {
-        if (roles.name === 'ROLE_ADMIN') {
-          this.router.navigate(['admin']);
-          return;
+    this.authenticationService.login(this.userForm.get('username').value, this.userForm.get('password').value)
+      .subscribe(data => {
+        this.userToken = data;
+        localStorage.setItem('userToken', JSON.stringify(this.userToken));
+        const roles = this.userToken.roles;
+        for (const role of roles) {
+          if (roles.name === ROLE_ADMIN) {
+            this.router.navigate(['admin']);
+            return;
+          }
         }
-      }
-      this.router.navigate(['/buyer']);
-    }, error => console.log(error.message));
+        this.router.navigate(['/buyer']);
+      }, error => console.log(error.message));
   }
 
   get username() {

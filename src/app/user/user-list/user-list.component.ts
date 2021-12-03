@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../model/user';
 import {UserService} from '../../service/user/user.service';
 import {NotificationService} from '../../service/notification/notification.service';
+import {ACTIVE, BLOCKED} from '../../model/constants';
 
 declare var $: any;
 
@@ -15,6 +16,8 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
 
   currentUserId: number;
+
+  currentUser: any;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService) {
@@ -36,13 +39,50 @@ export class UserListComponent implements OnInit {
     this.currentUserId = id;
   }
 
-  deleteUserById(id: number) {
-    this.userService.deleteById(id).subscribe((data) => {
-      $('#modal-delete').modal('toggle');
-      this.notificationService.notify('success', 'User deleted successfully!');
-      this.getAllUsers();
+  blockUser(id: number) {
+    this.userService.findById(id).subscribe((user) => {
+      user.status = BLOCKED;
+      this.userService.edit(user, id).subscribe(() => {
+        $('#modal-block').modal('toggle');
+        this.notificationService.notify('success', 'User blocked successfully!');
+        this.getAllUsers();
+      }, (error) => {
+        this.notificationService.notify('error', 'User blocked failed!');
+        console.log(error);
+      });
     }, (error) => {
-      this.notificationService.notify('error', 'User deleted failed!');
+      console.log(error);
+    });
+  }
+
+  unblockUser(id: number) {
+    this.userService.findById(id).subscribe((user) => {
+      user.status = ACTIVE;
+      this.userService.edit(user, id).subscribe(() => {
+        $('#modal-unblock').modal('toggle');
+        this.notificationService.notify('success', 'User unblocked successfully!');
+        this.getAllUsers();
+      }, (error) => {
+        this.notificationService.notify('error', 'User unblocked failed!');
+        console.log(error);
+      });
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  approveUser(id: number) {
+    this.userService.findById(id).subscribe((user) => {
+      user.status = ACTIVE;
+      this.userService.edit(user, id).subscribe(() => {
+        $('#modal-approve').modal('toggle');
+        this.notificationService.notify('success', 'User approved successfully!');
+        this.getAllUsers();
+      }, (error) => {
+        this.notificationService.notify('error', 'User approved failed!');
+        console.log(error);
+      });
+    }, (error) => {
       console.log(error);
     });
   }
