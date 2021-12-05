@@ -24,6 +24,4 @@ export interface User {
   viewCounter?: number;
   rentedCounter?: number;
   status?: string;
-  images?: any;
-  services?: any;
 }

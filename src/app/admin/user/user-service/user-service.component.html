@@ -1,0 +1,63 @@
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- The card -->
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">User's images</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <div class="row">
+              <!-- Free services -->
+              <div class="col-md-3">
+                <div class="card card-primary card-outline">
+                  <div class="card-body">
+                    <div *ngFor="let service of allServices; index as idx" class="custom-control custom-checkbox">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <input class="custom-control-input" type="checkbox" id="`freeService`+{{idx+1}}" value="value">
+                          <label for="`freeService`+{{idx+1}}" class="custom-control-label">{{service.name}}</label>
+                        </div>
+                        <div class="col-md-2">
+                          <span><i>Free</i></span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- Charged services -->
+              <div class="col-md-4">
+                <!-- Charged Services -->
+                <div class="card card-primary card-outline">
+                  <div class="card-body">
+
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+
+          </div>
+          <!-- /.card-body -->
+          <!-- Button DEACTIVATE, SAVE CHANGES and CANCEL -->
+          <div class="card-footer">
+            <div class="row">
+              <button type="submit" class="btn btn-success">Save changes</button> &nbsp;
+              <button type="button" routerLink="admin/dashboard" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+          <!-- /.card -->
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

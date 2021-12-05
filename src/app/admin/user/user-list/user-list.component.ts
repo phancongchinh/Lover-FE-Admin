@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../model/user';
-import {UserService} from '../../service/user/user.service';
-import {NotificationService} from '../../service/notification/notification.service';
-import {ACTIVE, BLOCKED} from '../../model/constants';
+import {User} from '../../../model/user';
+import {UserService} from '../../../service/user/user.service';
+import {NotificationService} from '../../../service/notification/notification.service';
+import {ACTIVE, BLOCKED} from '../../../model/constants';
 
 declare var $: any;
 

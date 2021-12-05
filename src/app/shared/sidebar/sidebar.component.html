@@ -40,7 +40,7 @@
              with font-awesome or any other icon font library -->
         <!-- Dashboard-->
         <li class="nav-item">
-          <a routerLink="admin/dashboard" class="nav-link">
+          <a routerLink="dashboard" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -49,7 +49,7 @@
         </li>
         <!-- User's profiles-->
         <li class="nav-item">
-          <a routerLink="admin/users/edit/1" class="nav-link">
+          <a routerLink="users/edit/1" class="nav-link">
             <i class="nav-icon fas fa-user-edit"></i>
             <p>
               Profile
@@ -67,7 +67,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a routerLink="/admin/users" class="nav-link">
+              <a routerLink="./users" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Users list</p>
               </a>
@@ -76,7 +76,16 @@
         </li>
         <!-- Gallery-->
         <li class="nav-item">
-          <a routerLink="admin/gallery" class="nav-link">
+          <a routerLink="./users/edit/1/services" class="nav-link">
+            <i class="nav-icon far fa-comment"></i>
+            <p>
+              Services
+            </p>
+          </a>
+        </li>
+        <!-- Gallery-->
+        <li class="nav-item">
+          <a routerLink="./users/edit/1/gallery" class="nav-link">
             <i class="nav-icon far fa-image"></i>
             <p>
               Gallery
@@ -112,6 +121,15 @@
               </a>
             </li>
           </ul>
+        </li>
+        <!-- Logout-->
+        <li class="nav-item" (click)="doLogout()">
+          <a class="nav-link">
+            <i class="nav-icon far fa-sad-cry"></i>
+            <p>
+              Logout
+            </p>
+          </a>
         </li>
       </ul>
     </nav>

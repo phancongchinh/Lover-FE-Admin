@@ -1,0 +1,196 @@
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- The form -->
+        <form [formGroup]="userEditForm" (ngSubmit)="submitUserEditForm(userEditForm)"
+              *ngIf="currentUser != null">
+          <!-- The card -->
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">User's profile</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <!-- Profile Image -->
+                <div class="col-md-3">
+                  <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                      <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                             src="./assets/static/dist/img/user4-128x128.jpg"
+                             alt="User profile picture">
+                      </div>
+
+                      <h3 class="profile-username text-center">{{currentUser.firstName}} {{currentUser.lastName}}</h3>
+
+                      <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                          <strong>Views</strong> <a class="float-right">{{currentUser.viewCounter}}</a>
+                        </li>
+                        <li class="list-group-item">
+                          <strong>Rented</strong> <a class="float-right">{{currentUser.rentedCounter}}</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a>
+                            <input style="width: 100%;" type="text" class="form-control form-control-plaintext"
+                                   formControlName="facebookUrl"
+                                   [value]="currentUser.facebookUrl">
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                    <textarea formControlName="description" id="description" rows="4" class="form-control"
+                              placeholder="Tell something about yourself" [value]="currentUser.description">
+                  </textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Information -->
+                <div class="col-md-9">
+                  <div class="card card-primary card-outline">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+
+                            <!-- First name -->
+                            <div class="form-group col-md-4">
+                              <label for="firstName" class="red-star">First name</label>
+                              <input type="text" formControlName="firstName" class="form-control"
+                                     id="firstName" placeholder="First name" value="{{currentUser.firstName}}">
+                            </div>
+                            <!-- Last name -->
+                            <div class="form-group col-md-4">
+                              <label for="lastName" class="red-star">Last name</label>
+                              <input type="text" formControlName="lastName" class="form-control"
+                                     id="lastName" placeholder="Last name" [value]="currentUser.lastName">
+                            </div>
+                            <!-- Gender -->
+                            <div class="form-group col-md-4">
+                              <label for="gender" class="red-star">Gender</label>
+                              <select formControlName="gender" id="gender" class="form-control"
+                                      [value]="currentUser.gender">
+                                <option value="" selected disabled>-- Gender --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Email -->
+                            <div class="form-group col-md-4">
+                              <label for="email" class="red-star">Email address</label>
+                              <input type="email" formControlName="email" class="form-control"
+                                     id="email" placeholder="Enter email" [value]="currentUser.email">
+                            </div>
+                            <!-- Phone -->
+                            <div class="form-group col-md-4">
+                              <label for="phone" class="red-star">Phone</label>
+                              <input type="text" formControlName="phone" class="form-control"
+                                     id="phone" placeholder="Enter phone" [value]="currentUser.phone">
+                            </div>
+
+                            <!-- Year of birth -->
+                            <div class="form-group col-md-4">
+                              <label for="yearOfBirth" class="red-star">Year of birth</label>
+                              <select formControlName="yearOfBirth" id="yearOfBirth" class="form-control"
+                                      [value]="currentUser.yearOfBirth">
+                                <option value="" selected disabled>-- Year of birth --</option>
+                                <option *ngFor="let year of allYears" value="{{year}}">{{year}}</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- City -->
+                            <div class="form-group col-md-4">
+                              <label for="city" class="red-star">City</label>
+                              <select formControlName="city" id="city" class="form-control"
+                                      [value]="currentUser.city.id">
+                                <option value="" selected disabled>-- City --</option>
+                                <option *ngFor="let city of allCities" value="{{city.id}}">{{city.name}}</option>
+                              </select>
+                            </div>
+                            <!-- Nationality -->
+                            <div class="form-group col-md-4">
+                              <label for="nationality" class="red-star">Nationality</label>
+                              <select formControlName="nationality" id="nationality" class="form-control"
+                                      [value]="currentUser.nationality.id">
+                                <option value="" selected disabled>-- Nationality --</option>
+                                <option *ngFor="let nationality of allNationalities"
+                                        value="{{nationality.id}}">{{nationality.name}}</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label for="weight">Weight</label>
+                              <input type="number" formControlName="weight" class="form-control" id="weight"
+                                     placeholder="Weight" [value]="currentUser.weight">
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="height">Height</label>
+                              <input type="number" formControlName="height" class="form-control" id="height"
+                                     placeholder="Height" [value]="currentUser.height">
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="bust">Bust</label>
+                              <input type="number" formControlName="bust" class="form-control" id="bust"
+                                     placeholder="Bust" [value]="currentUser.bust">
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="waist">Waist</label>
+                              <input type="number" formControlName="waist" class="form-control" id="waist"
+                                     placeholder="Waist" [value]="currentUser.waist">
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="hips">Hips</label>
+                              <input type="number" formControlName="hips" class="form-control" id="hips"
+                                     placeholder="Hips" [value]="currentUser.hips">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+            <!-- Button DEACTIVATE, SAVE CHANGES and CANCEL -->
+            <div class="card-footer">
+              <div class="row">
+                <button *ngIf="currentUser.status === 'Active'" type="button" class="btn btn-warning">Deactivate
+                </button>
+                <button *ngIf="currentUser.status === 'Deactivated'" type="button" class="btn btn-success">Activate
+                </button>&nbsp;
+                <button type="submit" class="btn btn-success">Save changes</button>&nbsp;
+                <button type="button" routerLink="admin/dashboard" class="btn btn-secondary">Cancel</button>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
-
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LayoutWithSharedComponent} from './layout/layout-with-shared/layout-with-shared.component';
 
 const routes: Routes = [
   {
@@ -9,12 +8,13 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule)
   },
   {
-    path: 'admin/dashboard',
-    component: DashboardComponent
+    path: 'admin',
+    component: LayoutWithSharedComponent,
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
   },
   {
-    path: 'admin/users',
-    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+    path: '**',
+    redirectTo: ''
   }
 ];
 
@@ -22,4 +22,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
