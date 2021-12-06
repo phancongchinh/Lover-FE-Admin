@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
 
     $(document).ready(() => {
-      $('#').validate({
+      $('#loginForm').validate({
         rules: {
           username: {required: true},
           password: {required: true}

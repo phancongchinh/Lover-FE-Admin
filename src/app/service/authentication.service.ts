@@ -38,7 +38,6 @@ export class AuthenticationService {
   doLogout() {
     localStorage.removeItem('userToken');
     this.currentUserSubject.next(null);
-    this.router.navigateByUrl(`${AUTH_API_URL}/login`).then();
   }
 
 
