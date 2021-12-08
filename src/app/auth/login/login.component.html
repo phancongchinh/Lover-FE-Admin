@@ -10,7 +10,8 @@
       <form [formGroup]="loginForm" id="loginForm"
             (ngSubmit)="loginForm.valid && doLogin()" class="form-group">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username" formControlName="username" required>
+          <input type="text" class="form-control" placeholder="Username"
+                 formControlName="username" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -18,7 +19,8 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+          <input type="password" class="form-control" placeholder="Password"
+                 formControlName="password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

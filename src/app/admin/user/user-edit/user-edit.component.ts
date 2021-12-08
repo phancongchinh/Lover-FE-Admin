@@ -29,7 +29,7 @@ export class UserEditComponent implements OnInit {
 
   currentUserId: number;
 
-  userEditForm: FormGroup = new FormGroup({
+  userForm: FormGroup = new FormGroup({
     id: new FormControl('1'),
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -73,14 +73,59 @@ export class UserEditComponent implements OnInit {
         rules: {
           firstName: {required: true},
           lastName: {required: true},
+          gender: {required: true},
+          email: {required: true},
+          phone: {required: true},
+          yearOfBirth: {required: true},
+          city: {required: true},
+          nationality: {required: true},
+          weight: {required: true},
+          height: {required: true},
+          bust: {required: true},
+          waist: {required: true},
+          hips: {required: true},
         },
         messages: {
           firstName: {
-            required: 'Enter first name'
+            required: 'First name must not be empty!'
           },
           lastName: {
-            required: 'Enter last name'
+            required: 'Last name must not be empty!'
           },
+          gender: {
+            required: 'Gender has not been selected!'
+          },
+          email: {
+            required: 'Email must not be empty!'
+          },
+          phone: {
+            required: 'Phone must not be empty!'
+          },
+          yearOfBirth: {
+            required: 'Year of birth has not been selected!!'
+          },
+          city: {
+            required: 'City has not been selected!'
+          },
+          nationality: {
+            required: 'Nationality has not been selected!'
+          },
+          weight: {
+            required: 'Weight must not be empty!'
+          },
+          height: {
+            required: 'Height must not be empty!'
+          },
+          bust: {
+            required: 'Bust must not be empty!'
+          },
+          waist: {
+            required: 'Waist must not be empty!'
+          },
+          hips: {
+            required: 'Hips must not be empty!'
+          },
+
         },
         errorElement: 'span',
         errorPlacement: (error, element) => {
@@ -106,23 +151,23 @@ export class UserEditComponent implements OnInit {
   submitUserEditForm(userEditForm: any) {
     const user: User = {
       id: this.currentUser.id,
-      firstName: this.userEditForm.value.firstName === '' ? this.currentUser.firstName : this.userEditForm.value.firstName,
-      lastName: this.userEditForm.value.lastName === '' ? this.currentUser.lastName : this.userEditForm.value.fullName,
-      gender: this.userEditForm.value.gender === '' ? this.currentUser.gender : this.userEditForm.value.gender,
-      email: this.userEditForm.value.email === '' ? this.currentUser.email : this.userEditForm.value.email,
-      phone: this.userEditForm.value.phone === '' ? this.currentUser.phone : this.userEditForm.value.phone,
-      yearOfBirth: this.userEditForm.value.yearOfBirth === '' ? this.currentUser.yearOfBirth : this.userEditForm.value.yearOfBirth,
-      city: this.userEditForm.value.city === '' ? this.currentUser.city : this.userEditForm.value.city,
-      nationality: this.userEditForm.value.nationality === '' ? this.currentUser.nationality : this.userEditForm.value.nationality,
-      facebookUrl: this.userEditForm.value.facebookUrl === '' ? this.currentUser.facebookUrl : this.userEditForm.value.facebookUrl,
+      firstName: this.userForm.value.firstName === '' ? this.currentUser.firstName : this.userForm.value.firstName,
+      lastName: this.userForm.value.lastName === '' ? this.currentUser.lastName : this.userForm.value.fullName,
+      gender: this.userForm.value.gender === '' ? this.currentUser.gender : this.userForm.value.gender,
+      email: this.userForm.value.email === '' ? this.currentUser.email : this.userForm.value.email,
+      phone: this.userForm.value.phone === '' ? this.currentUser.phone : this.userForm.value.phone,
+      yearOfBirth: this.userForm.value.yearOfBirth === '' ? this.currentUser.yearOfBirth : this.userForm.value.yearOfBirth,
+      city: this.userForm.value.city === '' ? this.currentUser.city : this.userForm.value.city,
+      nationality: this.userForm.value.nationality === '' ? this.currentUser.nationality : this.userForm.value.nationality,
+      facebookUrl: this.userForm.value.facebookUrl === '' ? this.currentUser.facebookUrl : this.userForm.value.facebookUrl,
       joinedAt: this.currentUser.joinedAt,
       lastLoginAt: this.currentUser.lastLoginAt,
-      description: this.userEditForm.value.description === '' ? this.currentUser.description : this.userEditForm.value.description,
-      weight: this.userEditForm.value.weight === '' ? this.currentUser.weight : this.userEditForm.value.weight,
-      height: this.userEditForm.value.height === '' ? this.currentUser.height : this.userEditForm.value.height,
-      bust: this.userEditForm.value.bust === '' ? this.currentUser.bust : this.userEditForm.value.bust,
-      waist: this.userEditForm.value.waist === '' ? this.currentUser.waist : this.userEditForm.value.waist,
-      hips: this.userEditForm.value.hips === '' ? this.currentUser.hips : this.userEditForm.value.hips,
+      description: this.userForm.value.description === '' ? this.currentUser.description : this.userForm.value.description,
+      weight: this.userForm.value.weight === '' ? this.currentUser.weight : this.userForm.value.weight,
+      height: this.userForm.value.height === '' ? this.currentUser.height : this.userForm.value.height,
+      bust: this.userForm.value.bust === '' ? this.currentUser.bust : this.userForm.value.bust,
+      waist: this.userForm.value.waist === '' ? this.currentUser.waist : this.userForm.value.waist,
+      hips: this.userForm.value.hips === '' ? this.currentUser.hips : this.userForm.value.hips,
       viewCounter: this.currentUser.viewCounter,
       rentedCounter: this.currentUser.rentedCounter,
       status: this.currentUser.status,

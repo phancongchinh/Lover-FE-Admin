@@ -4,11 +4,7 @@
 
 export const environment = {
   production: false,
-  userApiUrl: 'http://localhost:8080/api/users',
-  serviceApiUrl: 'http://localhost:8080/api/services',
-  cityApiUrl: 'http://localhost:8080/api/cities',
-  nationalityApiUrl: 'http://localhost:8080/api/nationalities',
-  authApiUrl: 'http://localhost:8080/api/auth'
+  baseApiUrl: 'http://localhost:8080/api',
 };
 
 /*

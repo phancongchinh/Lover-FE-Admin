@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {ReservationListComponent} from './reservation-list/reservation-list.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: ReservationListComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

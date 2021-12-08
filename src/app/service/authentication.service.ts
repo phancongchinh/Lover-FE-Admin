@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {AUTH_API_URL} from '../api-urls';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserToken} from '../model/user-token';
-import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -15,8 +14,7 @@ export class AuthenticationService {
   public currentUser: Observable<UserToken>;
   update = new EventEmitter<string>();
 
-  constructor(private httpClient: HttpClient,
-              private router: Router) {
+  constructor(private httpClient: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<UserToken>(JSON.parse(localStorage.getItem('userToken')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -39,6 +37,4 @@ export class AuthenticationService {
     localStorage.removeItem('userToken');
     this.currentUserSubject.next(null);
   }
-
-
 }

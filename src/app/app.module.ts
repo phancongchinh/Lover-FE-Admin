@@ -4,9 +4,9 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {LayoutModule} from './layout/layout.module';
 import {AuthModule} from './auth/auth.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {LayoutModule} from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +17,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LayoutModule,
-    AuthModule
+    AuthModule,
+    LayoutModule
   ],
   providers: [],
   exports: [

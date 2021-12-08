@@ -4,60 +4,84 @@
     <div class="row">
       <div class="col-md-12">
         <!-- The card -->
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">User's images</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-
-            <div class="row">
-              <!-- Free services -->
-              <div class="col-md-3">
-                <div class="card card-primary card-outline">
-                  <div class="card-body">
-                    <div *ngFor="let service of allServices; index as idx" class="custom-control custom-checkbox">
-                      <div class="row">
-                        <div class="col-md-10">
-                          <input class="custom-control-input" type="checkbox" id="`freeService`+{{idx+1}}" value="value">
-                          <label for="`freeService`+{{idx+1}}" class="custom-control-label">{{service.name}}</label>
-                        </div>
-                        <div class="col-md-2">
-                          <span><i>Free</i></span>
-                        </div>
+        <form [formGroup]="userServiceFormGroup" class="justify-content-md-center"
+              (ngSubmit)="userServiceFormGroup.valid && onSubmit()">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">User's services</h3>
+            </div>
+            <div class="card-body">
+              <div class="row" *ngFor="let service of services.controls; index as idx">
+                <!-- # Service -->
+                <div class="col-md-2 text-right">
+                  <label class="col-md-12 col-form-label">Service {{idx + 1}}</label>
+                </div>
+                <!-- Service column -->
+                <div class="col-md-3">
+                  <div formArrayName="services" *ngIf="services.controls.length">
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <select class="form-control" [formControlName]="idx">
+                          <option value="" disabled>-- Select a service --</option>
+                          <option value="{{service.id}}" *ngFor="let service of allServices">{{service.name}}</option>
+                        </select>
                       </div>
-
                     </div>
                   </div>
                 </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- Charged services -->
-              <div class="col-md-4">
-                <!-- Charged Services -->
-                <div class="card card-primary card-outline">
-                  <div class="card-body">
-
+                <!-- # Price -->
+                <div class="col-md-2 text-right">
+                  <label class="col-md-12 col-form-label">Price </label>
+                </div>
+                <!-- Price column -->
+                <div class="col-md-3">
+                  <div formArrayName="prices" *ngIf="services.controls.length">
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <input class="form-control" type="number" [formControlName]="idx">
+                        <!--                        <ng-container *ngIf="service.errors?.required">-->
+                        <!--                          <p class="invalid-feedback">-->
+                        <!--                            Required!-->
+                        <!--                          </p>-->
+                        <!--                        </ng-container>-->
+                        <!--                        <ng-container *ngIf="service.errors?.min">-->
+                        <!--                          <p class="invalid-feedback">-->
+                        <!--                            Invalid!-->
+                        <!--                          </p>-->
+                        <!--                        </ng-container>-->
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <!-- /.card-body -->
+                <!-- Add & remove buttons -->
+                <div class="col-md-2">
+                  <div class="text-right">
+                    <button type="button" class="btn btn-info" (click)="addService()">
+                      <small class="fa fa-plus"></small>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="removeService(idx)"
+                            *ngIf="services.controls.length > 1">
+                      <small class="fa fa-minus"></small>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-
-          </div>
-          <!-- /.card-body -->
-          <!-- Button DEACTIVATE, SAVE CHANGES and CANCEL -->
-          <div class="card-footer">
-            <div class="row">
-              <button type="submit" class="btn btn-success">Save changes</button> &nbsp;
-              <button type="button" routerLink="admin/dashboard" class="btn btn-secondary">Cancel</button>
+            <!-- /.card-body -->
+            <!-- Button DEACTIVATE, SAVE CHANGES and CANCEL -->
+            <div class="card-footer">
+              <div class="row">
+                <button type="submit" class="btn btn-success">Save changes</button> &nbsp;
+                <button type="button" routerLink="/admin/dashboard" class="btn btn-secondary">Cancel</button>
+              </div>
             </div>
+            <!-- /.card -->
           </div>
-          <!-- /.card -->
-        </div>
-
+        </form>
       </div>
     </div>
   </div><!-- /.container-fluid -->
 </section>
-<!-- /.content -->
+<!-- /.content-->
+
+

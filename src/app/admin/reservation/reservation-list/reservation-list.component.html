@@ -1,1 +1,175 @@
-<p>reservation-list works!</p>
+<!--<p>reservation-list works!</p>-->
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Reservation list</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <!-- Product Search By Name -->
+          <li>
+            <!--              Search bar here-->
+          </li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="card">
+    <div class="card-header">
+      <!--      <span class="btn btn-success btn-sm" routerLink="create">-->
+      <!--        <i class="fas fa-star"></i> Add new-->
+      <!--      </span>-->
+
+      <!--      <span class="float-right">-->
+      <!--        <ng-container>-->
+      <!--          <form (ngSubmit)="getAllBooks(keyword)">-->
+      <!--              <div class="input-group">-->
+      <!--                <input type="search" class="form-control form-control-sm"-->
+      <!--                       [(ngModel)]="keyword" placeholder="Search by title, author or description,...">-->
+      <!--                <div class="input-group-append">-->
+      <!--                  <button type="submit" class="btn btn-sm btn-default">-->
+      <!--                    <i class="fa fa-search"></i>-->
+      <!--                  </button>-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--            </form>-->
+      <!--        </ng-container>-->
+      <!--      </span>-->
+
+
+      <div class="card-body p-0">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Renter</th>
+            <th scope="col">Rentee</th>
+            <th scope="col">Reserve at</th>
+            <th scope="col">Total money</th>
+            <th scope="col" class="text-right">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let reservation of reservations; index as idx">
+            <td>{{idx + 1}}</td>
+            <td>
+              <span>
+              <a routerLink="./edit/{{reservation.id}}">{{reservation.id}}</a>
+              </span>
+            </td>
+            <td>{{reservation.renter}}</td>
+            <td>{{reservation.rentee}}</td>
+            <td>{{reservation.reserveAt}}</td>
+            <td>{{reservation.totalMoney}}</td>
+            <td>{{reservation.status}}</td>
+<!--            <td class="project-actions text-right">-->
+<!--              <a *ngIf="reservation.status === 'Active'" title="User is active. Click to block!"-->
+<!--                 type="button" (click)="getCurrentUserId(user.id)"-->
+<!--                 routerLink="admin/users/edit/{{user.id}}"-->
+<!--                 class="btn btn-success btn-sm"-->
+<!--                 data-toggle="modal" data-target="#modal-block">-->
+<!--                <i class="fas fa-user-check"></i>-->
+<!--              </a>-->
+<!--              <a *ngIf="user.status === 'Deactivated'" title="User is deactivated. Click to block!"-->
+<!--                 type="button" (click)="getCurrentUserId(user.id)"-->
+<!--                 routerLink="admin/users/edit/{{user.id}}"-->
+<!--                 class="btn btn-info btn-sm"-->
+<!--                 data-toggle="modal" data-target="#modal-block">-->
+<!--                <i class="fas fa-user-lock"></i>-->
+<!--              </a>-->
+<!--              <a *ngIf="user.status === 'Blocked'" title="User is blocked. Click to unblock!"-->
+<!--                 type="button" (click)="getCurrentUserId(user.id)"-->
+<!--                 routerLink="admin/users/edit/{{user.id}}"-->
+<!--                 class="btn btn-danger info btn-sm" data-toggle="modal" data-target="#modal-unblock">-->
+<!--                <i class="fas fa-user-slash"></i>-->
+<!--              </a>-->
+<!--              <a *ngIf="user.status === 'Pending'" title="User registration is pending. Click to approve!"-->
+<!--                 type="button" (click)="getCurrentUserId(user.id)"-->
+<!--                 routerLink="admin/users/edit/{{user.id}}"-->
+<!--                 class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-approve">-->
+<!--                <i class="fas fa-user-plus" style="color: white"></i>-->
+<!--              </a>-->
+<!--            </td>-->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /. main content -->
+
+
+<!--&lt;!&ndash;Modal of BLOCK&ndash;&gt;-->
+<!--<div class="modal fade" id="modal-block">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h4 class="modal-title">Block?</h4>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>Are you sure to block this user?</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer justify-content-between">-->
+<!--        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+<!--        <button type="button" class="btn btn-danger" (click)="blockUser(currentUserId)">Block</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;Modal of UNBLOCK&ndash;&gt;-->
+<!--<div class="modal fade" id="modal-unblock">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h4 class="modal-title">Unblock?</h4>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>Unblock this user?</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer justify-content-between">-->
+<!--        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+<!--        <button type="button" class="btn btn-success" (click)="unblockUser(currentUserId)">Unblock</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;Modal of APPROVE&ndash;&gt;-->
+<!--<div class="modal fade" id="modal-approve">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h4 class="modal-title">Approve?</h4>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>Approve this user?</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer justify-content-between">-->
+<!--        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+<!--        <button type="button" class="btn btn-success" (click)="approveUser(currentUserId)">Approve</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

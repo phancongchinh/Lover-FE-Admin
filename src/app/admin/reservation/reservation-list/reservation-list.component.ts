@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ReservationService} from '../../../service/reservation/reservation.service';
+import {Reservation} from '../../../model/reservation';
+import {User} from '../../../model/user';
 
 @Component({
   selector: 'app-reservation-list',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationListComponent implements OnInit {
 
-  constructor() { }
+  reservations: Reservation[];
 
-  ngOnInit() {
+  renter: User;
+
+  rentee: User;
+
+  constructor(private reservationService: ReservationService) {
   }
 
+  ngOnInit() {
+    this.getAllReservations();
+  }
+
+  private getAllReservations() {
+    this.reservationService.findAll().subscribe((data) => {
+      this.reservations = data;
+    }, (error) => {
+      console.log(error);
+    });
+  }
 }
