@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '../../../service/notification/notification.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {error} from 'protractor';
+import { Reservation } from 'src/app/model/reservation';
+import { ReservationService } from 'src/app/service/reservation/reservation.service';
 
 @Component({
   selector: 'app-reservation-list',
