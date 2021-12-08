@@ -1,1 +1,46 @@
-<p>reservation-list works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Reservation List</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <!-- Product Search By Name -->
+          <li>
+            <!--              Search bar here-->
+          </li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+  <div class="card">
+    <div class="card-header">
+
+
+      <div class="card-body p-0">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col" class="text-right">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let reservation of reservations; let i = index">
+            <th scope="row">{{++i}}</th>
+            <td>{{reservation.rentee.firstName + " " + reservation.rentee.lastName}}</td>
+            <td>
+              <button type="button" class="my-btn-main" (click)="showView(reservation.id)">Info</button>
+            </td>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
