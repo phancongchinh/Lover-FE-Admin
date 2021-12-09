@@ -4,8 +4,6 @@ import {UserListComponent} from './user-list/user-list.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {UserServiceComponent} from './user-service/user-service.component';
 import {UserImageComponent} from './user-image/user-image.component';
-import {UserReservationComponent} from './user-reservation/user-reservation.component';
-
 
 const routes: Routes = [
   {
@@ -25,8 +23,8 @@ const routes: Routes = [
     component: UserImageComponent
   },
   {
-    path: 'edit/:id/reservations',
-    component: UserReservationComponent
+    path: 'edit/:id/user-reservation',
+    loadChildren: () => import('./user-reservation/user-reservation.module').then(module => module.UserReservationModule)
   }
 ];
 
