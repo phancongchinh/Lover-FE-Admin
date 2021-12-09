@@ -23,7 +23,7 @@ const routes: Routes = [
     component: UserImageComponent
   },
   {
-    path: 'edit/:id/user-reservation',
+    path: 'edit/:id/reservations',
     loadChildren: () => import('./user-reservation/user-reservation.module').then(module => module.UserReservationModule)
   }
 ];
