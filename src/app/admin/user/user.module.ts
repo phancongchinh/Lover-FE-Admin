@@ -7,16 +7,14 @@ import {UserEditComponent} from './user-edit/user-edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserServiceComponent} from './user-service/user-service.component';
 import {UserImageComponent} from './user-image/user-image.component';
-import { UserReservationComponent } from './user-reservation/user-reservation.component';
-
 
 @NgModule({
   declarations: [
     UserListComponent,
     UserEditComponent,
     UserServiceComponent,
-    UserImageComponent,
-    UserReservationComponent],
+    UserImageComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
