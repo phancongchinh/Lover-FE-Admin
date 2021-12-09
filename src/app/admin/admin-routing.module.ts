@@ -11,10 +11,6 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   },
-  {
-    path: 'reservations',
-    loadChildren: () => import('./user/user-reservation/user-reservation-routing.module').then(module => module.UserReservationRoutingModule)
-  }
 ];
 
 @NgModule({
