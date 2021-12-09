@@ -19,7 +19,8 @@
                 <!-- Service column -->
                 <div class="col-md-3">
                   <div formArrayName="services" *ngIf="services.controls.length">
-                    <div class="form-group row">
+<!--                    <ng-container [formGroupName]="idx">-->
+                      <div class="form-group row">
                       <div class="col-md-12">
                         <select class="form-control" [formControlName]="idx">
                           <option value="" disabled>-- Select a service --</option>
@@ -27,6 +28,7 @@
                         </select>
                       </div>
                     </div>
+<!--                    </ng-container>-->
                   </div>
                 </div>
                 <!-- # Price -->

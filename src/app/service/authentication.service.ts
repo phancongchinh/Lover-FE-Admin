@@ -1,9 +1,10 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AUTH_API_URL} from '../api-urls';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserToken} from '../model/user-token';
+import {AUTH_API_URL} from '../api-urls';
 import {map} from 'rxjs/operators';
+import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,15 @@ export class AuthenticationService {
   doLogout() {
     localStorage.removeItem('userToken');
     this.currentUserSubject.next(null);
+  }
+
+  hasRole(authority: string, user?: User, userToken?: UserToken) {
+    const roles = (user) ? user.roles : userToken.roles;
+    for (const role of roles) {
+      if (role.authority === authority) {
+        return true;
+      }
+    }
+    return false;
   }
 }

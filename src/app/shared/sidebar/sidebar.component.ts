@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../service/authentication.service';
 import {UserToken} from '../../model/user-token';
 import {ROLE_ADMIN, ROLE_SELLER} from '../../model/constants';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,27 +11,19 @@ import {ROLE_ADMIN, ROLE_SELLER} from '../../model/constants';
 })
 export class SidebarComponent implements OnInit {
 
-  currentUserValue: UserToken;
-
+  currentUser: UserToken;
   roleAdmin = ROLE_ADMIN;
-
   roleSeller = ROLE_SELLER;
 
   constructor(private authenticationService: AuthenticationService) {
+    this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit() {
-    this.currentUserValue = this.authenticationService.currentUserValue;
   }
 
-  hasRole(authority: string): boolean {
-    const roles = this.currentUserValue.roles;
-    for (const role of roles) {
-      if (role.authority === authority) {
-        return true;
-      }
-    }
-    return false;
+  hasRole(authority: string) {
+    return this.authenticationService.hasRole(authority, this.currentUser);
   }
 
   doLogout() {

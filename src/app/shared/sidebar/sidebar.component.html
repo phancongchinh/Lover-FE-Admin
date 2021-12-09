@@ -17,7 +17,7 @@
         <img src="assets/static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a routerLink="#" class="d-block">{{currentUserValue.name}}</a>
+        <a routerLink="#" class="d-block">{{currentUser.name}}</a>
       </div>
     </div>
 
@@ -49,7 +49,7 @@
         </li>
         <!-- User's profiles-->
         <li class="nav-item">
-          <a routerLink="users/edit/{{currentUserValue.id}}" class="nav-link">
+          <a routerLink="users/edit/{{currentUser.id}}" class="nav-link">
             <i class="nav-icon fas fa-user-edit"></i>
             <p>
               Profile
@@ -82,7 +82,7 @@
         </li>
         <!-- My reservations-->
         <li class="nav-item" *ngIf="hasRole(roleSeller) && !hasRole(roleAdmin)">
-          <a routerLink="./users/edit/1/reservations" class="nav-link">
+          <a routerLink="./users/edit/{{currentUser.id}}/reservations" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
               My reservations
@@ -91,7 +91,7 @@
         </li>
         <!-- Services-->
         <li class="nav-item" *ngIf="hasRole(roleSeller) && !hasRole(roleAdmin)">
-          <a routerLink="./users/edit/1/services" class="nav-link">
+          <a routerLink="./users/edit/{{currentUser.id}}/services" class="nav-link">
             <i class="nav-icon far fa-comment"></i>
             <p>
               My services
@@ -100,7 +100,7 @@
         </li>
         <!-- Gallery-->
         <li class="nav-item" *ngIf="hasRole(roleSeller) && !hasRole(roleAdmin)">
-          <a routerLink="./users/edit/1/gallery" class="nav-link">
+          <a routerLink="./users/edit/{{currentUser.id}}/gallery" class="nav-link">
             <i class="nav-icon far fa-image"></i>
             <p>
               My gallery
@@ -118,19 +118,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a routerLink="pages/mailbox/mailbox.html" class="nav-link">
+              <a routerLink="./users/{{currentUser.id}}/inbox" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Inbox</p>
               </a>
             </li>
             <li class="nav-item">
-              <a routerLink="pages/mailbox/compose.html" class="nav-link">
+              <a routerLink="./users/{{currentUser.id}}/compose" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Compose</p>
               </a>
             </li>
             <li class="nav-item">
-              <a routerLink="pages/mailbox/read-mail.html" class="nav-link">
+              <a routerLink="./users/{{currentUser.id}}/read" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Read</p>
               </a>

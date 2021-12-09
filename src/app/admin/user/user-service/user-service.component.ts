@@ -36,15 +36,16 @@ export class UserServiceComponent implements OnInit {
   ngOnInit() {
     this.getAllServices();
     this.getCurrentUserServices();
-
     this.userServiceFormGroup = this.fb.group({
-      services: this.fb.array([
-        ['', Validators.required]
-      ]),
-      prices: this.fb.array([
-        ['', Validators.required]
-      ])
+      services: this.fb.array([]),
+      prices: this.fb.array([])
     });
+    if (this.currentUserServices.length === 0) {
+      this.currentUserServices.map(userService => {
+        this.services.push(this.fb.control('', Validators.required));
+        this.prices.push(this.fb.control('', Validators.required));
+      });
+    }
   }
 
   private getAllServices() {
@@ -111,6 +112,12 @@ export class UserServiceComponent implements OnInit {
   private getCurrentUserServices() {
     this.userServiceService.findBySeller(this.currentUser.id).subscribe((data) => {
       this.currentUserServices = data;
+      this.currentUserServices.map(userService => {
+        // console.log(userService.service.id);
+        this.services.push(this.fb.control(userService.service.id, Validators.required));
+        this.prices.push(this.fb.control(userService.price, Validators.required));
+
+      });
       console.log(data);
     }, (error) => {
       console.log(error);
