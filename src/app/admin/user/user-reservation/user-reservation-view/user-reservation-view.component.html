@@ -1,1 +1,45 @@
-<p>user-reservation-view works!</p>
+<section class="page_title s-parallax bottom_mask_subtract s-overlay ds title-overlay s-py-md-25">
+  <div class="container">
+    <div class="row">
+
+      <div class="fw-divider-space hidden-below-lg mt-160"></div>
+      <div class="fw-divider-space hidden-above-lg mt-100"></div>
+
+      <div class="col-md-12 text-center">
+        <h1>Reservation View</h1>
+      </div>
+
+      <div class="fw-divider-space hidden-below-lg mt-160"></div>
+      <div class="fw-divider-space hidden-above-lg mt-100"></div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="ds s-pt-70 s-pb-40 s-pb-sm-70 s-py-lg-100 s-py-xl-150 c-gutter-60">
+  <div class="container">
+    <div class="row">
+
+
+      <ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
+
+        <li class="woocommerce-order-overview__order order">
+          Order number: <strong>{{reservation.id}}</strong>
+        </li>
+
+
+        <li class="woocommerce-order-overview__total total">
+          Total: <strong>
+                        <span class="woocommerce-Price-amount amount">
+                            <span
+                              class="woocommerce-Price-currencySymbol">$</span>{{reservation.totalMoney}}</span>
+        </strong>
+        </li>
+        <li class="woocommerce-order-overview__date date">
+          Location: <strong>{{reservation.location}}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

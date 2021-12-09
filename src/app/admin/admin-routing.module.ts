@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'reservations',
-    loadChildren: () => import('./reservation/reservation.module').then(module => module.ReservationModule)
+    loadChildren: () => import('./user/user-reservation/user-reservation-routing.module').then(module => module.UserReservationRoutingModule)
   }
 ];
 
