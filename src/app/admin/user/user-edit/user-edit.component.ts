@@ -9,6 +9,8 @@ import {ServiceService} from '../../../service/service/service.service';
 import {CityService} from '../../../service/city/city.service';
 import {NationalityService} from '../../../service/nationality/nationality.service';
 import {NotificationService} from '../../../service/notification/notification.service';
+import {AuthenticationService} from '../../../service/authentication.service';
+import {UserToken} from '../../../model/user-token';
 
 declare var $: any;
 
@@ -27,7 +29,7 @@ export class UserEditComponent implements OnInit {
 
   currentUser: User = {};
 
-  currentUserId: number;
+  currentUserToken: UserToken;
 
   userForm: FormGroup = new FormGroup({
     id: new FormControl('1'),
@@ -58,9 +60,11 @@ export class UserEditComponent implements OnInit {
   constructor(private userService: UserService,
               private serviceService: ServiceService,
               private cityService: CityService,
+              private authenticationService: AuthenticationService,
               private nationalityService: NationalityService,
               private notificationService: NotificationService,
               private activatedRoute: ActivatedRoute) {
+    this.currentUserToken = authenticationService.currentUserValue;
   }
 
   ngOnInit() {
@@ -143,8 +147,8 @@ export class UserEditComponent implements OnInit {
 
 
     this.activatedRoute.paramMap.subscribe(async (paramMap: ParamMap) => {
-      this.currentUserId = +paramMap.get('id');
-      this.currentUser = await this.getCurrentUser(this.currentUserId);
+      this.currentUser.id = +paramMap.get('id');
+      this.currentUser = await this.getCurrentUser(this.currentUser.id);
     });
   }
 
@@ -175,7 +179,7 @@ export class UserEditComponent implements OnInit {
       password: this.currentUser.password,
     };
 
-    this.userService.edit(user, 1).subscribe((data) => {
+    this.userService.edit(user, this.currentUser.id).subscribe((data) => {
       this.notificationService.notify('success', 'User updated successfully!');
     }, (error) => {
       this.notificationService.notify('error', 'User updated failed!');

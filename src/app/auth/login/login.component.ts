@@ -6,8 +6,6 @@ import {UserToken} from '../../model/user-token';
 import {ROLE_ADMIN} from '../../model/constants';
 import {first} from 'rxjs/operators';
 
-declare var $: any;
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,11 +29,8 @@ export class LoginComponent implements OnInit {
               private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
     if (this.currentUser) {
-      const roleList = this.currentUser.roles;
-      for (const role of roleList) {
-        if (role.authority === ROLE_ADMIN) {
-          this.hasRoleAdmin = true;
-        }
+      if (this.hasRole(ROLE_ADMIN)) {
+        this.hasRoleAdmin = true;
       }
     }
     if (this.authenticationService.currentUserValue) {
@@ -58,7 +53,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          sessionStorage.setItem('ACCESS_TOKEN', data.token);
+          localStorage.setItem('ACCESS_TOKEN', data.token);
           const roleList = data.roles;
           for (const role of roleList) {
             if (role.authority === ROLE_ADMIN) {
