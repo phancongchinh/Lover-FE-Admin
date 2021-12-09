@@ -3,6 +3,7 @@ import {Reservation} from '../../model/reservation';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {RESERVATION_API_URL} from '../../api-urls';
+import {User} from '../../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class ReservationService {
   }
 
   findAll(): Observable<Reservation[]> {
+    return this.httpClient.get<Reservation[]>(RESERVATION_API_URL);
+  }
+
+  findByRentee(user: User): Observable<Reservation[]> {
     return this.httpClient.get<Reservation[]>(RESERVATION_API_URL);
   }
 

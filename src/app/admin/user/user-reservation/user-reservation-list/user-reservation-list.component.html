@@ -1,1 +1,145 @@
-<p>user-reservation-list works!</p>
+<!--<p>user-reservation-list works!</p>-->
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">My reservations</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <!-- Product Search By Name -->
+          <li>
+            <!--              Search bar here-->
+          </li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="card">
+    <div class="card-header">
+      <!--      <span class="btn btn-success btn-sm" routerLink="create">-->
+      <!--        <i class="fas fa-star"></i> Add new-->
+      <!--      </span>-->
+
+      <!--      <span class="float-right">-->
+      <!--        <ng-container>-->
+      <!--          <form (ngSubmit)="getAllBooks(keyword)">-->
+      <!--              <div class="input-group">-->
+      <!--                <input type="search" class="form-control form-control-sm"-->
+      <!--                       [(ngModel)]="keyword" placeholder="Search by title, author or description,...">-->
+      <!--                <div class="input-group-append">-->
+      <!--                  <button type="submit" class="btn btn-sm btn-default">-->
+      <!--                    <i class="fa fa-search"></i>-->
+      <!--                  </button>-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--            </form>-->
+      <!--        </ng-container>-->
+      <!--      </span>-->
+
+
+      <div class="card-body p-0">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Rentee</th>
+            <th scope="col">Total Money</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="text-right">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let reservation of myReservations; index as idx">
+            <td>{{idx + 1}}</td>
+            <td>
+              <span>
+              <a routerLink="./edit/{{reservation.id}}">{{reservation.id}}</a>
+              </span>
+            </td>
+            <td>{{reservation.rentee.firstName}} {{reservation.rentee.firstName}}</td>
+            <td>{{reservation.totalMoney}}</td>
+            <td>{{reservation.status}}</td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /. main content -->
+
+
+<!--Modal of BLOCK-->
+<div class="modal fade" id="modal-block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Block?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to block this user?</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="blockUser(currentUserId)">Block</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal of UNBLOCK-->
+<div class="modal fade" id="modal-unblock">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Unblock?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Unblock this user?</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="unblockUser(currentUserId)">Unblock</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal of APPROVE-->
+<div class="modal fade" id="modal-approve">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Approve?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Approve this user?</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="approveUser(currentUserId)">Approve</button>
+      </div>
+    </div>
+  </div>
+</div>
