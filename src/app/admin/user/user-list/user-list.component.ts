@@ -42,6 +42,7 @@ export class UserListComponent implements OnInit {
   blockUser(id: number) {
     this.userService.findById(id).subscribe((user) => {
       user.status = BLOCKED;
+      console.log(user);
       this.userService.edit(user, id).subscribe(() => {
         $('#modal-block').modal('toggle');
         this.notificationService.notify('success', 'User blocked successfully!');

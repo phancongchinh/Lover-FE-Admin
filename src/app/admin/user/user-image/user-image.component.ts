@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UploadFileService} from '../../../service/upload-file/upload-file.service';
 import {NotificationService} from '../../../service/notification/notification.service';
 
@@ -12,14 +12,15 @@ export class UserImageComponent implements OnInit {
   formData = new FormData();
 
   constructor(private uploadFileService: UploadFileService,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService) {
+  }
 
   ngOnInit() {
   }
 
   saveImage() {
     this.uploadFileService.upload(this.formData).subscribe(data => {
-      this.notificationService.notify('success', 'File download successful')
+      this.notificationService.notify('success', 'File download successful');
     }, error => this.notificationService.notify('error', 'Error'));
   }
 
