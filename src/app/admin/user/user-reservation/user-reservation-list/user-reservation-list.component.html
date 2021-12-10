@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">My reservations</h1>
+        <h1 class="m-0">Reservations</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -69,21 +69,18 @@
             </td>
             <td class="text-right">
               <a title="View detail!"
-                 routerLink="admin/users/edit/{{reservation.id}}"
+                 routerLink="/admin/users/{{currentUser.id}}/reservations/{{reservation.id}}"
                  type="button" class="btn btn-sm btn-info">View
               </a>
-              <a *ngIf="reservation.status === PENDING" title="Accept!"
-                 routerLink="admin/users/edit/{{reservation.id}}"
+              <a *ngIf="currentUser.id !=1 && reservation.status === PENDING" title="Accept!"
                  class="btn btn-info btn-sm" (click)="getReservationIdOnAction(reservation.id)"
                  data-toggle="modal" data-target="#modal-accept">Accept
               </a>
-              <a *ngIf="reservation.status === PENDING" title="Reject!"
-                 routerLink="admin/users/edit/{{reservation.id}}"
+              <a *ngIf="currentUser.id !=1 && reservation.status === PENDING" title="Reject!"
                  class="btn btn-danger btn-sm" (click)="getReservationIdOnAction(reservation.id)"
                  data-toggle="modal" data-target="#modal-reject">Reject
               </a>
-              <a *ngIf="reservation.status === ACCEPTED" title="Claim money!"
-                 routerLink="admin/users/edit/{{reservation.id}}"
+              <a *ngIf="currentUser.id !=1 && reservation.status === ACCEPTED" title="Claim money!"
                  class="btn btn-success btn-sm" (click)="getReservationIdOnAction(reservation.id)"
                  data-toggle="modal" data-target="#modal-claim-money">Claim
               </a>

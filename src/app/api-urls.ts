@@ -9,5 +9,5 @@ export const NATIONALITY_API_URL = `${environment.baseApiUrl}/nationalities`;
 export const RESERVATION_API_URL = `${environment.baseApiUrl}/reservations`;
 export const USER_SERVICE_API_URL = `${environment.baseApiUrl}/user-services`;
 export const API_URL = environment.apiUrl;
-export const IMAGE_API_URL = `${environment.baseApiUrl}/images`
+export const IMAGE_API_URL = `${environment.baseApiUrl}/images`;
 

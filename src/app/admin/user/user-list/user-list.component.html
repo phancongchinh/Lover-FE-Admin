@@ -53,7 +53,8 @@
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
-            <th scope="col" class="text-right">Status</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="text-right">Action</th>
           </tr>
           </thead>
           <tbody>
@@ -66,6 +67,15 @@
             </td>
             <td>{{user.phone}}</td>
             <td>{{user.email}}</td>
+
+            <td>
+              <span *ngIf="user.status === USER" class="badge badge-info">Buyer</span>
+              <span *ngIf="user.status === PENDING" class="badge badge-warning">Pending</span>
+              <span *ngIf="user.status === ACTIVE" class="badge badge-success">Active</span>
+              <span *ngIf="user.status === DEACTIVATED" class="badge badge-primary">Deactivated</span>
+              <span *ngIf="user.status === BLOCKED" class="badge badge-danger">Blocked</span>
+            </td>
+
             <td class="project-actions text-right">
               <a *ngIf="user.status === 'Active'" title="User is active. Click to block!"
                  type="button" (click)="getCurrentUserId(user.id)"

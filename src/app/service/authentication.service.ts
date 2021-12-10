@@ -39,6 +39,7 @@ export class AuthenticationService {
         this.currentUser = this.currentUserSubject.asObservable();
         if (this.currentUser) {
           if (this.hasRole(ROLE_ADMIN, this.userToken) || this.hasRole(ROLE_SELLER, this.userToken)) {
+            this.notificationService.notify('success', 'Logged in successfully');
             this.router.navigate(['/admin/dashboard']);
           } else {
             this.notificationService.notify('error', 'You do not have permission to login');

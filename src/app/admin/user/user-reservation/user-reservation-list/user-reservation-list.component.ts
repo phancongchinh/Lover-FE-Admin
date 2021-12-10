@@ -3,7 +3,7 @@ import {Reservation} from '../../../../model/reservation';
 import {ReservationService} from '../../../../service/reservation/reservation.service';
 import {AuthenticationService} from '../../../../service/authentication.service';
 import {UserToken} from '../../../../model/user-token';
-import {ACCEPTED, COMPLETED, PENDING, REJECTED} from '../../../../model/constants';
+import {ACCEPTED, COMPLETED, PENDING, REJECTED, ROLE_ADMIN} from '../../../../model/constants';
 import {NotificationService} from '../../../../service/notification/notification.service';
 
 declare var $: any;
@@ -37,12 +37,19 @@ export class UserReservationListComponent implements OnInit {
   }
 
   getMyReservations() {
-    this.reservationService.findAll(this.currentUser.id).subscribe((data) => {
-      this.myReservations = data;
-      console.log(data);
-    }, (error) => {
-      console.log(error);
-    });
+    if (this.authenticationService.hasRole(ROLE_ADMIN, this.currentUser)) {
+      this.reservationService.findAll().subscribe((data) => {
+        this.myReservations = data;
+      }, (error) => {
+        console.log(error);
+      });
+    } else {
+      this.reservationService.findAll(this.currentUser.id).subscribe((data) => {
+        this.myReservations = data;
+      }, (error) => {
+        console.log(error);
+      });
+    }
   }
 
   getReservationIdOnAction(id: number) {
@@ -83,10 +90,10 @@ export class UserReservationListComponent implements OnInit {
       $('#modal-claim-money').modal('toggle');
       this.reservationService.edit(reservation, id).subscribe(() => {
         this.getMyReservations();
-        this.notificationService.notify('success', 'Reservation accepted!');
+        this.notificationService.notify('success', 'Claimed successfully!');
       }, (error) => {
         console.log(error);
-        this.notificationService.notify('error', 'Reservation rejected failed!');
+        this.notificationService.notify('error', 'Claimed failed!');
       });
     });
   }

@@ -7,6 +7,7 @@ export const ACCEPTED = 'Accepted';
 export const REJECTED = 'Rejected';
 export const COMPLETED = 'Completed';
 
+export const USER = 'User';
 export const BLOCKED = 'Blocked';
 export const ACTIVE = 'Active';
 export const DEACTIVATED = 'Deactivated';

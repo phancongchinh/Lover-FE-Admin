@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user/user.service';
 import {NotificationService} from '../../../service/notification/notification.service';
-import {ACTIVE, BLOCKED} from '../../../model/constants';
+import {ACTIVE, BLOCKED, DEACTIVATED, PENDING, USER} from '../../../model/constants';
 
 declare var $: any;
 
@@ -18,6 +18,12 @@ export class UserListComponent implements OnInit {
   currentUserId: number;
 
   currentUser: any;
+
+  USER = USER;
+  PENDING = PENDING;
+  ACTIVE = ACTIVE;
+  DEACTIVATED = DEACTIVATED;
+  BLOCKED = BLOCKED;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService) {
@@ -42,6 +48,7 @@ export class UserListComponent implements OnInit {
   blockUser(id: number) {
     this.userService.findById(id).subscribe((user) => {
       user.status = BLOCKED;
+      console.log(user);
       this.userService.edit(user, id).subscribe(() => {
         $('#modal-block').modal('toggle');
         this.notificationService.notify('success', 'User blocked successfully!');

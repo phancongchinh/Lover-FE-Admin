@@ -24,10 +24,10 @@ export class SidebarComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private userService: UserService) {
     this.currentUser = this.authenticationService.currentUserValue;
-    this.findUserById();
   }
 
   ngOnInit() {
+    this.findUserById();
   }
 
   hasRole(authority: string) {
@@ -41,6 +41,7 @@ export class SidebarComponent implements OnInit {
   findUserById() {
     this.userService.findById(this.currentUser.id).subscribe(data => {
       this.user = data;
-    })
+      console.log(data);
+    });
   }
 }

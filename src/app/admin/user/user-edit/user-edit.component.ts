@@ -86,11 +86,6 @@ export class UserEditComponent implements OnInit {
           yearOfBirth: {required: true},
           city: {required: true},
           nationality: {required: true},
-          weight: {required: true},
-          height: {required: true},
-          bust: {required: true},
-          waist: {required: true},
-          hips: {required: true},
         },
         messages: {
           firstName: {
@@ -116,23 +111,7 @@ export class UserEditComponent implements OnInit {
           },
           nationality: {
             required: 'Nationality has not been selected!'
-          },
-          weight: {
-            required: 'Weight must not be empty!'
-          },
-          height: {
-            required: 'Height must not be empty!'
-          },
-          bust: {
-            required: 'Bust must not be empty!'
-          },
-          waist: {
-            required: 'Waist must not be empty!'
-          },
-          hips: {
-            required: 'Hips must not be empty!'
-          },
-
+          }
         },
         errorElement: 'span',
         errorPlacement: (error, element) => {

@@ -16,8 +16,12 @@ export class ReservationService {
   }
 
   findAll(sellerId?: number): Observable<Reservation[]> {
-    const params = new HttpParams().set('sellerId', String(sellerId));
-    return this.httpClient.get<Reservation[]>(RESERVATION_API_URL, {params});
+    if (sellerId != null) {
+      const params = new HttpParams().set('sellerId', String(sellerId));
+      return this.httpClient.get<Reservation[]>(RESERVATION_API_URL, {params});
+    } else {
+      return this.httpClient.get<Reservation[]>(RESERVATION_API_URL);
+    }
   }
 
   findByRentee(user: User): Observable<Reservation[]> {

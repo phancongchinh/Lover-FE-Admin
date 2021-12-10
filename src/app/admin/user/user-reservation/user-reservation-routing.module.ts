@@ -10,7 +10,7 @@ const routes: Routes = [
     component: UserReservationListComponent
   },
   {
-    path: 'view/:id',
+    path: ':id',
     component: UserReservationViewComponent
   }
 ];
