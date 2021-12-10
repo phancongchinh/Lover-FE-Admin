@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Reservation} from '../../model/reservation';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {RESERVATION_API_URL} from '../../api-urls';
 import {User} from '../../model/user';
@@ -15,12 +15,13 @@ export class ReservationService {
   constructor(private httpClient: HttpClient) {
   }
 
-  findAll(): Observable<Reservation[]> {
-    return this.httpClient.get<Reservation[]>(RESERVATION_API_URL);
+  findAll(sellerId?: number): Observable<Reservation[]> {
+    const params = new HttpParams().set('sellerId', String(sellerId));
+    return this.httpClient.get<Reservation[]>(RESERVATION_API_URL, {params});
   }
 
   findByRentee(user: User): Observable<Reservation[]> {
-    return this.httpClient.get<Reservation[]>(RESERVATION_API_URL);
+    return this.httpClient.post<Reservation[]>(RESERVATION_API_URL, user);
   }
 
   findById(id: number): Observable<Reservation> {
@@ -28,7 +29,7 @@ export class ReservationService {
   }
 
   addNew(reservation: Reservation): Observable<Reservation> {
-    return this.httpClient.post<Reservation>(RESERVATION_API_URL, reservation);
+    return this.httpClient.post<Reservation>(RESERVATION_API_URL, reservation,);
   }
 
   edit(reservation: Reservation, id: number): Observable<Reservation> {

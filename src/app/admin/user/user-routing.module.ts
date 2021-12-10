@@ -11,19 +11,19 @@ const routes: Routes = [
     component: UserListComponent
   },
   {
-    path: 'edit/:id',
+    path: ':id',
     component: UserEditComponent
   },
   {
-    path: 'edit/:id/services',
+    path: ':id/services',
     component: UserServiceComponent
   },
   {
-    path: 'edit/:id/gallery',
+    path: ':id/gallery',
     component: UserImageComponent
   },
   {
-    path: 'edit/:id/reservations',
+    path: ':id/reservations',
     loadChildren: () => import('./user-reservation/user-reservation.module').then(module => module.UserReservationModule)
   }
 ];

@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
   });
 
   returnUrl: string;
-  loading = false;
-  submitted = false;
   currentUser: UserToken;
 
   constructor(private authenticationService: AuthenticationService,
@@ -43,15 +41,17 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
-    this.submitted = true;
-    this.loading = true;
     this.authenticationService.doLogin(this.loginForm.value.username, this.loginForm.value.password)
       .pipe(first())
       .subscribe((data) => {
-        if (this.authenticationService.hasRole(ROLE_ADMIN, data) || this.authenticationService.hasRole(ROLE_SELLER, data)) {
+        if (this.authenticationService.hasRole(ROLE_ADMIN, data)) {
           this.returnUrl = '/admin/dashboard';
         } else {
-          this.returnUrl = '/';
+          if (this.authenticationService.hasRole(ROLE_SELLER, data)) {
+            this.returnUrl = `/admin/users/${data.id}/reservations`;
+          } else {
+            this.returnUrl = '/';
+          }
         }
         this.router.navigate([this.returnUrl]).finally(() => {
         });

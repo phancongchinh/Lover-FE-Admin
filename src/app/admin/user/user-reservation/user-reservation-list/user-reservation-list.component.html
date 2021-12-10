@@ -50,8 +50,7 @@
           <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Rentee</th>
+            <th scope="col">Renter</th>
             <th scope="col">Total Money</th>
             <th scope="col">Status</th>
             <th scope="col" class="text-right">Action</th>
@@ -60,15 +59,35 @@
           <tbody>
           <tr *ngFor="let reservation of myReservations; index as idx">
             <td>{{idx + 1}}</td>
-            <td>
-              <span>
-              <a routerLink="./edit/{{reservation.id}}">{{reservation.id}}</a>
-              </span>
-            </td>
-            <td>{{reservation.rentee.firstName}} {{reservation.rentee.firstName}}</td>
+            <td>{{reservation.renter.firstName}} {{reservation.renter.lastName}}</td>
             <td>{{reservation.totalMoney}}</td>
-            <td>{{reservation.status}}</td>
-            <td></td>
+            <td>
+              <span *ngIf="reservation.status === PENDING" class="badge badge-warning">Pending</span>
+              <span *ngIf="reservation.status === ACCEPTED" class="badge badge-info">Accepted</span>
+              <span *ngIf="reservation.status === REJECTED" class="badge badge-danger">Rejected</span>
+              <span *ngIf="reservation.status === COMPLETED" class="badge badge-success">Completed</span>
+            </td>
+            <td class="text-right">
+              <a title="View detail!"
+                 routerLink="admin/users/edit/{{reservation.id}}"
+                 type="button" class="btn btn-sm btn-info">View
+              </a>
+              <a *ngIf="reservation.status === PENDING" title="Accept!"
+                 routerLink="admin/users/edit/{{reservation.id}}"
+                 class="btn btn-info btn-sm" (click)="getReservationIdOnAction(reservation.id)"
+                 data-toggle="modal" data-target="#modal-accept">Accept
+              </a>
+              <a *ngIf="reservation.status === PENDING" title="Reject!"
+                 routerLink="admin/users/edit/{{reservation.id}}"
+                 class="btn btn-danger btn-sm" (click)="getReservationIdOnAction(reservation.id)"
+                 data-toggle="modal" data-target="#modal-reject">Reject
+              </a>
+              <a *ngIf="reservation.status === ACCEPTED" title="Claim money!"
+                 routerLink="admin/users/edit/{{reservation.id}}"
+                 class="btn btn-success btn-sm" (click)="getReservationIdOnAction(reservation.id)"
+                 data-toggle="modal" data-target="#modal-claim-money">Claim
+              </a>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -78,67 +97,65 @@
 </section>
 <!-- /. main content -->
 
-
-<!--Modal of BLOCK-->
-<div class="modal fade" id="modal-block">
+<!--Modal of ACCEPT-->
+<div class="modal fade" id="modal-accept">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Block?</h4>
+        <h4 class="modal-title">Accept?</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure to block this user?</p>
+        <p>Are you sure to accept this reservation?</p>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" (click)="blockUser(currentUserId)">Block</button>
+        <button type="button" class="btn btn-info" (click)="accept(reservationIdOnAction)">Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal of REJECT-->
+<div class="modal fade" id="modal-reject">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Reject?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Reject this reservation?</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="reject(reservationIdOnAction)">Reject</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<!--Modal of UNBLOCK-->
-<div class="modal fade" id="modal-unblock">
+<!--Modal of CLAIM-->
+<div class="modal fade" id="modal-claim-money">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Unblock?</h4>
+        <h4 class="modal-title">Claim?</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Unblock this user?</p>
+        <p>Claim money for this reservation?</p>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success" (click)="unblockUser(currentUserId)">Unblock</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--Modal of APPROVE-->
-<div class="modal fade" id="modal-approve">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Approve?</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Approve this user?</p>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success" (click)="approveUser(currentUserId)">Approve</button>
+        <button type="button" class="btn btn-success" (click)="claimMoney(reservationIdOnAction)">Claim</button>
       </div>
     </div>
   </div>
