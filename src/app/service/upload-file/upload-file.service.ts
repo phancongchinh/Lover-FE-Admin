@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {IMAGE_API_URL} from '../../api-urls';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +11,7 @@ export class UploadFileService {
   constructor(private httpClient: HttpClient) {
   }
 
-  // upload(files: File[]): Observable<HttpEvent<any>> {
-  //   const formData = new FormData();
-  //   for (const file of files) {
-  //     formData.append('file', file);
-  //   }
-  //   const request = new HttpRequest('POST', , formData, {
-  //     reportProgress: true,
-  //     responseType: 'json'
-  //   });
-  //
-  //   return this.httpClient.request(request);
-  //
-  // }
+  upload(images: any): Observable<any> {
+    return this.httpClient.post(IMAGE_API_URL, images);
+  }
 }
