@@ -23,54 +23,22 @@
         <!-- The card -->
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">User's images</h3>
+            <h3 class="card-title">Upload images</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
 
             <div class="row">
-              <!-- Images -->
-              <div class="col-md-4">
-                <!-- Images -->
-                <div class="card card-primary card-outline">
-                  <div class="card-body">
-                    <!-- Input for images -->
-                    <div class="row">
-                      <div class="form-group col-md-12">
-                        <label for="images">Upload images</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input type="file" class="form-control custom-file-input" id="images" multiple  (change)="onFileImage($event)">
-                            <label class="custom-file-label" for="images">Choose files</label>
-                          </div>
-                          <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- List of images -->
-<!--                    <div>-->
-<!--                      <div class="p-0 row">-->
-<!--                        <div class="col-sm-2">-->
-<!--                          <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox"-->
-<!--                             data-title="sample 1 - white">-->
-<!--                            <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2"-->
-<!--                                 alt="white sample"/>-->
-<!--                          </a>-->
-<!--                        </div>-->
-<!--                        <div class="col-sm-2">-->
-<!--                          <a href="https://via.placeholder.com/1200/000000.png?text=2" data-toggle="lightbox"-->
-<!--                             data-title="sample 2 - black">-->
-<!--                            <img src="https://via.placeholder.com/300/000000?text=2" class="img-fluid mb-2"-->
-<!--                                 alt="black sample"/>-->
-<!--                          </a>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
+              <div class="form-group col-md-12">
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="form-control custom-file-input" id="images" multiple
+                           (change)="onFileImage($event)">
+                    <label class="custom-file-label" for="images">Choose files</label>
                   </div>
-                  <!-- /.card-body -->
+                  <!--                          <div class="input-group-append">-->
+                  <!--                            <span class="input-group-text">Upload</span>-->
+                  <!--                          </div>-->
                 </div>
               </div>
             </div>
@@ -81,7 +49,7 @@
           <div class="card-footer">
             <div class="row">
               <button type="button" class="btn btn-success" (click)="saveImage()">Save changes</button> &nbsp;
-              <button type="button" routerLink="admin/dashboard" class="btn btn-secondary">Cancel</button>
+              <button type="button" routerLink="/admin/dashboard" class="btn btn-secondary">Cancel</button>
             </div>
           </div>
           <!-- /.card -->

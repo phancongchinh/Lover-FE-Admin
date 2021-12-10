@@ -83,6 +83,7 @@ export class UserServiceComponent implements OnInit {
   }
 
   onSubmit() {
+
     const userServiceForm = this.userServiceFormGroup.value;
 
     console.log(userServiceForm.services);
@@ -116,7 +117,6 @@ export class UserServiceComponent implements OnInit {
         // console.log(userService.service.id);
         this.services.push(this.fb.control(userService.service.id, Validators.required));
         this.prices.push(this.fb.control(userService.price, Validators.required));
-
       });
       console.log(data);
     }, (error) => {

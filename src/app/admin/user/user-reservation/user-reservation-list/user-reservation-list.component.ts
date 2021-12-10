@@ -90,10 +90,10 @@ export class UserReservationListComponent implements OnInit {
       $('#modal-claim-money').modal('toggle');
       this.reservationService.edit(reservation, id).subscribe(() => {
         this.getMyReservations();
-        this.notificationService.notify('success', 'Reservation accepted!');
+        this.notificationService.notify('success', 'Claimed successfully!');
       }, (error) => {
         console.log(error);
-        this.notificationService.notify('error', 'Reservation rejected failed!');
+        this.notificationService.notify('error', 'Claimed failed!');
       });
     });
   }
