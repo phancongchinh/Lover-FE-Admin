@@ -11,6 +11,7 @@ import {NationalityService} from '../../../service/nationality/nationality.servi
 import {NotificationService} from '../../../service/notification/notification.service';
 import {AuthenticationService} from '../../../service/authentication.service';
 import {UserToken} from '../../../model/user-token';
+import {API_URL} from '../../../api-urls';
 
 declare var $: any;
 
@@ -30,6 +31,8 @@ export class UserEditComponent implements OnInit {
   currentUser: User = {};
 
   currentUserToken: UserToken;
+
+  apiUrl = API_URL;
 
   userForm: FormGroup = new FormGroup({
     id: new FormControl('1'),

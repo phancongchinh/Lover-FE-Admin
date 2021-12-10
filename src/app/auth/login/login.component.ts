@@ -25,15 +25,15 @@ export class LoginComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router) {
 
-    this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
-
-    if (this.currentUser) {
-      if (this.authenticationService.hasRole(ROLE_ADMIN) || this.authenticationService.hasRole(ROLE_SELLER)) {
-        this.router.navigate(['/admin/dashboard']);
-      } else {
-        this.router.navigate(['/']);
-      }
-    }
+    // this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
+    //
+    // if (this.currentUser) {
+    //   if (this.authenticationService.hasRole(ROLE_ADMIN) || this.authenticationService.hasRole(ROLE_SELLER)) {
+    //     this.router.navigate(['/admin/dashboard']);
+    //   } else {
+    //     this.router.navigate(['/']);
+    //   }
+    // }
   }
 
   ngOnInit() {
@@ -41,20 +41,24 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
-    this.authenticationService.doLogin(this.loginForm.value.username, this.loginForm.value.password)
-      .pipe(first())
-      .subscribe((data) => {
-        if (this.authenticationService.hasRole(ROLE_ADMIN, data)) {
-          this.returnUrl = '/admin/dashboard';
-        } else {
-          if (this.authenticationService.hasRole(ROLE_SELLER, data)) {
-            this.returnUrl = `/admin/users/${data.id}/reservations`;
-          } else {
-            this.returnUrl = '/';
-          }
-        }
-        this.router.navigate([this.returnUrl]).finally(() => {
-        });
-      });
+    this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password);
   }
+
+  // doLogin() {
+  //   this.authenticationService.doLogin(this.loginForm.value.username, this.loginForm.value.password)
+  //     .pipe(first())
+  //     .subscribe((data) => {
+  //       if (this.authenticationService.hasRole(ROLE_ADMIN, data)) {
+  //         this.returnUrl = '/admin/dashboard';
+  //       } else {
+  //         if (this.authenticationService.hasRole(ROLE_SELLER, data)) {
+  //           this.returnUrl = `/admin/users/${data.id}/reservations`;
+  //         } else {
+  //           this.returnUrl = '/';
+  //         }
+  //       }
+  //       this.router.navigate([this.returnUrl]).finally(() => {
+  //       });
+  //     });
+  // }
 }

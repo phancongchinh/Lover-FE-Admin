@@ -8,4 +8,5 @@ export const CITY_API_URL = `${environment.baseApiUrl}/cities`;
 export const NATIONALITY_API_URL = `${environment.baseApiUrl}/nationalities`;
 export const RESERVATION_API_URL = `${environment.baseApiUrl}/reservations`;
 export const USER_SERVICE_API_URL = `${environment.baseApiUrl}/user-services`;
+export const API_URL = environment.apiUrl;
 
