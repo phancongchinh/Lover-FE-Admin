@@ -2,6 +2,23 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4 class="card-title">My images</h4>
+          </div>
+          <div class="card-body">
+            <div class="filter-container p-0 row">
+              <div class="col-4" *ngFor="let image of images">
+                <a href="{{apiUrl + '/' + image.name}}">
+                  <img src="{{apiUrl + '/' + image.name}}" class="img-fluid mb-2" alt="white sample">
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
       <div class="col-md-12">
         <!-- The card -->
         <div class="card card-secondary">
