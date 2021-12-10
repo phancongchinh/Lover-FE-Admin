@@ -19,7 +19,7 @@ export class ReservationService {
   }
 
   findById(id: number): Observable<Reservation> {
-    return this.httpClient.get<Reservation>(RESERVATION_API_URL + `/${id}`);
+    return this.httpClient.get<Reservation>(RESERVATION_API_URL + `/view/${id}`);
   }
 
   addNew(reservation: Reservation): Observable<Reservation> {

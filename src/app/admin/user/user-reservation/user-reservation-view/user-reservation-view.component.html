@@ -1,53 +1,44 @@
-<section class="page_title s-parallax bottom_mask_subtract s-overlay ds title-overlay s-py-md-25">
-  <div class="container">
-    <div class="row">
+<div class="col-6">
+  <h1>Reservation 2021</h1>
 
-      <div class="fw-divider-space hidden-below-lg mt-160"></div>
-      <div class="fw-divider-space hidden-above-lg mt-100"></div>
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+      <tr>
+        <th style="width:60%">renter:</th>
+        <td>{{reservation?.renter?.firstName}} {{reservation?.renter?.lastName}}</td>
+      </tr>
 
-      <div class="col-md-12 text-center">
-        <h1>Reservation View</h1>
-      </div>
-
-      <div class="fw-divider-space hidden-below-lg mt-160"></div>
-      <div class="fw-divider-space hidden-above-lg mt-100"></div>
-
-    </div>
+      <tr>
+        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+        <td>{{reservation?.location}}</td>
+      </tr>
+      <tr>
+        <th>Start form:</th>
+        <td>{{reservation?.startFrom}}</td>
+      </tr>
+      <tr>
+        <th>Reservation At:</th>
+        <td>{{reservation?.reserveAt}}</td>
+      </tr>
+      <tr>
+        <th>Total Money:</th>
+        <td>{{reservation?.totalMoney}}</td>
+      </tr>
+      <tr>
+        <th>Service :</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Status :</th>
+        <td>{{reservation?.status}}</td>
+      </tr>
+      <tr>
+        <th>Feedback-about-tenants :</th>
+        <td>phan hoi ve nguoi thue</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-</section>
-
-
-<section class="ds s-pt-70 s-pb-40 s-pb-sm-70 s-py-lg-100 s-py-xl-150 c-gutter-60">
-  <div class="container">
-    <div class="row">
-
-
-      <ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
-
-        <li class="woocommerce-order-overview__order order">
-          Order number: <strong>{{reservation.id}}</strong>
-        </li>
-
-        <li class="woocommerce-order-overview__order order">
-          time start: <strong>{{reservation.id}}</strong>
-        </li>
-
-        <li class="woocommerce-order-overview__order order">
-          Order number: <strong>{{reservation.id}}</strong>
-        </li>
-
-
-        <li class="woocommerce-order-overview__total total">
-          Total: <strong>
-                        <span class="woocommerce-Price-amount amount">
-                            <span
-                              class="woocommerce-Price-currencySymbol">$</span>{{reservation.totalMoney}}</span>
-        </strong>
-        </li>
-        <li class="woocommerce-order-overview__date date">
-          Location: <strong>{{reservation.location}}</strong>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+<!--  <button type="button" class="btn btn-success float-right">Back</button>-->
+</div>
