@@ -11,9 +11,9 @@ const routes: Routes = [
   {
     path: 'admin',
     component: LayoutWithSharedComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
-    canLoad: [AuthGuard],
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
+    // canLoad: [AuthGuard],
     loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
   },
   {
