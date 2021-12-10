@@ -33,6 +33,7 @@ export class UserImageComponent implements OnInit {
 
   saveImage() {
     this.uploadFileService.upload(this.formData).subscribe(data => {
+      this.findImagesByUserId();
       this.notificationService.notify('success', 'File download successful')
     }, error => this.notificationService.notify('error', 'Error'));
   }
