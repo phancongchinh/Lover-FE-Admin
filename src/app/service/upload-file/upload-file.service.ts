@@ -12,6 +12,6 @@ export class UploadFileService {
   }
 
   upload(images: any): Observable<any> {
-    return this.httpClient.post<any>(IMAGE_API_URL, images);
+    return this.httpClient.post(`${IMAGE_API_URL}/many`, images);
   }
 }
